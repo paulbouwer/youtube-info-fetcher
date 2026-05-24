@@ -32,7 +32,7 @@ A work package is a *draft* while `related:` is absent, empty, or set to `TBD`. 
 | -------- | ----------- |
 | Work package creation | Draft permitted |
 | `update-work-package` setting `related:` | Promotes draft to linked |
-| Pull request creation | git-workflow `create-pull-request` blocks if `related:` is unset, empty, or `TBD` |
+| Pull request creation | git-workflow `create-pull-request` blocks if `related:` is unset, empty, or `TBD`, OR if `verification-results.md` is missing |
 
 ## File Section Conventions
 
@@ -55,6 +55,20 @@ A work package is a *draft* while `related:` is absent, empty, or set to `TBD`. 
 | `## Decisions` | Recommended | Key decisions made during planning or implementation |
 
 Task checkboxes in `## Phases` use no specific numbering scheme — they are implementation detail and are agent-managed during execution.
+
+### verification-results.md Sections
+
+`verification-results.md` MUST exist before pull-request creation (see `$AGENT_SYSTEM_FOLDER/rules/git-workflow/pull-request.md` § Pre-PR Validation). It records the author's own verification of the implementation against the linked issue.
+
+| Heading | Required | Purpose |
+| ------- | -------- | ------- |
+| `## Summary` | Yes | Brief overview of what was verified |
+| `## Acceptance Criteria` | Yes | Table mapping each AC from the linked issue to a Pass/Fail status with evidence |
+| `## Plan Coverage` | Yes | Confirmation that every phase / task in `plan.md` was completed (or note explicit deferrals) |
+| `## Decisions Realised` | Recommended | Decisions captured during implementation, including links to any decision records authored |
+| `## Follow-ups` | Recommended | Items intentionally deferred to a later session, with rationale |
+
+The file MAY include a `related:` frontmatter pointing at the issue for symmetry with `plan.md`.
 
 ## Cross-References
 

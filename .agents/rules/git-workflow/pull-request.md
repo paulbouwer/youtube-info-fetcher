@@ -61,6 +61,17 @@ fix/PROJ-456-fix-bug →  Issue PROJ-456
 
 Use closing keywords to automatically close issues on merge: `Fixes #123`, `Closes #456`, `Resolves #789`.
 
+## Pre-PR Validation
+
+The following checks MUST pass before a pull request is opened. The git-workflow `create-pull-request` action enforces them and blocks PR creation otherwise.
+
+| Check | Requirement | Resolution if Missing |
+| ----- | ----------- | --------------------- |
+| Work package `related:` frontmatter | If a work package exists for this branch's issue, its `plan.md` MUST have a non-empty, non-`TBD` `related:` URL pointing at the issue | Run the work-tracking skill's `update-work-package` action to set `related:` |
+| Work package `verification-results.md` | If a work package exists for this branch's issue, the work package folder MUST contain a `verification-results.md` file documenting the outcome of the implementation against the issue's acceptance criteria | Author `verification-results.md` per `$AGENT_SYSTEM_FOLDER/rules/work-tracking/work-package.md` § verification-results.md Sections before retrying PR creation |
+
+The `verification-results.md` check exists because verification is part of the implementation, not a post-merge afterthought: the PR reviewer should be able to see the author's own verification of the acceptance criteria at review time.
+
 ## AI Agent Usage Tracking
 
 ### When to Include
