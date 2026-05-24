@@ -1,0 +1,65 @@
+{
+  // This template provides the required section ordering for devcontainer.json files.
+  // Refer to core.md for detailed configuration requirements.
+  "name": "{CONTAINER_NAME}",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  // https://github.com/devcontainers/images/tree/main/src/base-ubuntu
+
+  // Container settings
+  "remoteUser": "vscode",
+  "privileged": false,
+  "shutdownAction": "stopContainer",
+  "init": true,
+
+  /*
+       init: true
+
+       Enable init process as PID 1 for proper signal handling, zombie process reaping, and process
+       management. This is a good practice for development containers, especially when:
+       - Running Node.js applications that might spawn child processes
+       - Using Docker-in-Docker
+       - Running development servers, build tools, or test suites
+       - Working with multiple processes or services
+  */
+
+  // Lifecycle hooks
+  "initializeCommand": "mkdir ${localEnv:HOME}${localEnv:USERPROFILE}/.devcontainer-extensions || echo ok",
+  "postCreateCommand": "bash .devcontainer/post-create.sh --workspace-folder ${containerWorkspaceFolder}",
+  "postStartCommand": "bash .devcontainer/post-start.sh --workspace-folder ${containerWorkspaceFolder}",
+
+  // Mounts
+  "mounts": [
+    // User ssh keys
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly",
+
+    // User specific lifecycle hooks scripts
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.devcontainer-extensions,target=${containerWorkspaceFolder}/.devcontainer-extensions,type=bind,consistency=cached"
+  ],
+
+  // Features
+  "features": {
+    // Add features per features.md
+  },
+
+  // VS Code customizations
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true,
+        "editor.tabSize": 2
+      },
+      "extensions": [
+        // Add extensions per extensions.md and language development-environment.md files
+      ]
+    }
+  },
+
+  // Port forwarding
+  "forwardPorts": [
+    // Add ports that must be forwarded
+  ],
+  "portsAttributes": { 
+    // Add label and onAutoForward attributes per port
+  }
+}
