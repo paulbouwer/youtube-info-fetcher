@@ -18,24 +18,24 @@ This skill provides capabilities for creating and reviewing decision records thr
 
 ### Capabilities
 
-| Capability | Action | Description |
-|------------|--------|-------------|
-| Create | `$DECISION_RECORDS_SKILL/actions/create.md` | Guide the creation of a decision record through Socratic discovery |
-| Review | `$DECISION_RECORDS_SKILL/actions/review.md` | Analyse an existing decision record for completeness and quality |
+| Capability | Action | Description | Load when |
+|------------|--------|-------------|-----------|
+| Create | `$DECISION_RECORDS_SKILL/actions/create.md` | Guide the creation of a decision record through Socratic discovery | User wants to capture or document a new decision |
+| Review | `$DECISION_RECORDS_SKILL/actions/review.md` | Analyse an existing decision record for completeness and quality | User wants to review, score, or update the status of an existing decision record |
 
-### Bundled Rules
+### Rules
 
-| Rule | File | Description |
-|----------|------|-------------|
-| Rules Index | `$DECISION_RECORDS_SKILL/rules/rules.index.md` | Lazy-loading index for this skill's rules |
-| Core | `$DECISION_RECORDS_SKILL/rules/core.md` | When to create, naming conventions, required sections, status lifecycle |
-| Checklist | `$DECISION_RECORDS_SKILL/rules/checklist.md` | Validation checklist for decision record completeness |
+| Index | File |
+|-------|------|
+| Skill Rules Index | `$DECISION_RECORDS_SKILL/rules/rules.index.md` |
+
+Consult each index and load only the rule files whose **Load when** matches the selected capability.
 
 ### Bundled Templates
 
-| Template | File | Description |
-|----------|------|-------------|
-| Decision Record | `$DECISION_RECORDS_SKILL/templates/decision-record.md` | Decision record markdown template |
+| Template | File | Load when |
+|----------|------|-----------|
+| Decision Record | `$DECISION_RECORDS_SKILL/templates/decision-record.md` | Running the Create capability (generating a new record) |
 
 ### Index Maintenance
 
@@ -56,9 +56,9 @@ Both capabilities are responsible for maintaining the decision records index at 
 
 ### Execution Steps
 
-1. Load the bundled rules listed in the **Bundled Rules** section into context
-2. Load the bundled templates listed in the **Bundled Templates** section into context
-3. Determine the user's intent and select the matching capability from the **Capabilities** section
-4. Execute the selected capability — rules and templates are already in context
+1. Determine the user's intent and select the matching capability from the **Capabilities** section using its **Load when** trigger
+2. Load skill rules via the **Rules** index — only the rules whose **Load when** matches the selected capability
+3. Load bundled templates whose **Load when** matches the selected capability
+4. Execute the selected capability
 5. Update the decision records index as per the rules in the **Index Maintenance** section
 

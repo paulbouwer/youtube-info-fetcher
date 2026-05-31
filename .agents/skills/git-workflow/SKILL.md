@@ -18,24 +18,20 @@ This skill provides capabilities for executing git workflow operations that comp
 
 ### Capabilities
 
-| Capability | Action | Description |
-|------------|--------|-------------|
-| Create Branch | `$GIT_WORKFLOW_SKILL/actions/create-branch.md` | Create a rules-compliant branch linked to an issue |
-| Commit | `$GIT_WORKFLOW_SKILL/actions/commit.md` | Create conventional commits with AI attribution |
-| Create Pull Request | `$GIT_WORKFLOW_SKILL/actions/create-pull-request.md` | Generate a rules-compliant PR linked to an issue |
+| Capability | Action | Description | Load when |
+|------------|--------|-------------|-----------|
+| Create Branch | `$GIT_WORKFLOW_SKILL/actions/create-branch.md` | Create a rules-compliant branch linked to an issue | User wants to create a new git branch |
+| Commit | `$GIT_WORKFLOW_SKILL/actions/commit.md` | Create conventional commits with AI attribution | User wants to commit staged or unstaged changes |
+| Create Pull Request | `$GIT_WORKFLOW_SKILL/actions/create-pull-request.md` | Generate a rules-compliant PR linked to an issue | User wants to open or submit a pull request |
 
-### Bundled Rules
+### Rules
 
-| Rule | File | Description |
-|----------|------|-------------|
-| Rules Index | `$GIT_WORKFLOW_SKILL/rules/rules.index.md` | Lazy-loading index for this skill's rules |
-| Core | `$GIT_WORKFLOW_SKILL/rules/core.md` | Cross-cutting workflow principles: issue-first development, conventional commits, atomic changes, AI attribution, protected branches, provider detection |
-| Branch | `$GIT_WORKFLOW_SKILL/rules/branch.md` | Branch structure, lifecycle, and project policy reference |
-| Commit | `$GIT_WORKFLOW_SKILL/rules/commit.md` | Commit message structure, grouping, AI attribution mechanics, signing configuration |
-| Pull Request | `$GIT_WORKFLOW_SKILL/rules/pull-request.md` | PR structure, content requirements, issue linking, pre-PR validation |
-| Checklist | `$GIT_WORKFLOW_SKILL/rules/checklist.md` | Validation checklist for all workflow operations |
+| Index | File |
+|-------|------|
+| Skill Rules Index | `$GIT_WORKFLOW_SKILL/rules/rules.index.md` |
+| Project Rules Index | `$AGENT_SYSTEM_FOLDER/rules/git-workflow/rules.index.md` |
 
-Actions load additional project rules from `$AGENT_SYSTEM_FOLDER/rules/git-workflow/` based on the capability being executed (branch policy, commit policy, pull request policy).
+Consult each index and load only the rule files whose **Load when** matches the selected capability.
 
 ## Flow
 
@@ -46,6 +42,6 @@ Actions load additional project rules from `$AGENT_SYSTEM_FOLDER/rules/git-workf
 
 ### Execution Steps
 
-1. Load the bundled rules listed in the **Bundled Rules** section into context
-2. Determine the user's intent and select the matching capability from the **Capabilities** section
-3. Execute the selected capability — bundled rules are already in context; the action loads relevant project rules from `$AGENT_SYSTEM_FOLDER/rules/git-workflow/`
+1. Determine the user's intent and select the matching capability from the **Capabilities** section using its **Load when** trigger
+2. Load skill and project rules via the indexes listed in the **Rules** section — only the rules whose **Load when** matches the selected capability
+3. Execute the selected capability

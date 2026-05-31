@@ -19,24 +19,21 @@ This skill provides capabilities for managing work tracking artefacts that compl
 
 ### Capabilities
 
-| Capability | Action | Description |
-|------------|--------|-------------|
-| Create Issue | `$WORK_TRACKING_SKILL/actions/create-issue.md` | Create a rules-compliant issue, add it to the configured board, and set initial status |
-| Update Issue | `$WORK_TRACKING_SKILL/actions/update-issue.md` | Apply field-scoped or section-scoped non-destructive updates to an existing issue |
-| Create Work Package | `$WORK_TRACKING_SKILL/actions/create-work-package.md` | Scaffold a rules-compliant work package; if an issue exists, append the back-link row |
-| Update Work Package | `$WORK_TRACKING_SKILL/actions/update-work-package.md` | Apply field-scoped or section-scoped non-destructive updates to an existing work package |
+| Capability | Action | Description | Load when |
+|------------|--------|-------------|-----------|
+| Create Issue | `$WORK_TRACKING_SKILL/actions/create-issue.md` | Create a rules-compliant issue, add it to the configured board, and set initial status | User wants to create a new issue / unit of tracked work on the provider |
+| Update Issue | `$WORK_TRACKING_SKILL/actions/update-issue.md` | Apply field-scoped or section-scoped non-destructive updates to an existing issue | User wants to edit, tick acceptance criteria in, or append to an existing issue |
+| Create Work Package | `$WORK_TRACKING_SKILL/actions/create-work-package.md` | Scaffold a rules-compliant work package; if an issue exists, append the back-link row | User wants to start a new unit of planned local work |
+| Update Work Package | `$WORK_TRACKING_SKILL/actions/update-work-package.md` | Apply field-scoped or section-scoped non-destructive updates to an existing work package | User wants to edit, tick tasks in, or append to an existing work package |
 
-### Bundled Rules
+### Rules
 
-| Rule | File | Description |
-|----------|------|-------------|
-| Rules Index | `$WORK_TRACKING_SKILL/rules/rules.index.md` | Lazy-loading index for this skill's rules |
-| Core | `$WORK_TRACKING_SKILL/rules/core.md` | Cross-cutting principles: Issue-First Development, complementary content models, 1:1 cardinality, bidirectional linkage, idempotency, lifecycle, status field |
-| Issue | `$WORK_TRACKING_SKILL/rules/issue.md` | Invariant issue structure, body section layout per type, acceptance criteria format, Work Packages section |
-| Work Package | `$WORK_TRACKING_SKILL/rules/work-package.md` | Invariant folder structure, required files, lifecycle, naming convention |
-| Checklist | `$WORK_TRACKING_SKILL/rules/checklist.md` | Validation checklist for all work-tracking operations |
+| Index | File |
+|-------|------|
+| Skill Rules Index | `$WORK_TRACKING_SKILL/rules/rules.index.md` |
+| Project Rules Index | `$AGENT_SYSTEM_FOLDER/rules/work-tracking/rules.index.md` |
 
-Actions load additional project rules from `$AGENT_SYSTEM_FOLDER/rules/work-tracking/` based on the capability being executed (issue policy, work package policy, templates, development environment).
+Consult each index and load only the rule files whose **Load when** matches the selected capability.
 
 ## Flow
 
@@ -48,6 +45,6 @@ Actions load additional project rules from `$AGENT_SYSTEM_FOLDER/rules/work-trac
 
 ### Execution Steps
 
-1. Load the bundled rules listed in the **Bundled Rules** section into context
-2. Determine the user's intent and select the matching capability from the **Capabilities** section
-3. Execute the selected capability — bundled rules are already in context; the action loads relevant project rules from `$AGENT_SYSTEM_FOLDER/rules/work-tracking/`
+1. Determine the user's intent and select the matching capability from the **Capabilities** section using its **Load when** trigger
+2. Load skill and project rules via the indexes listed in the **Rules** section — only the rules whose **Load when** matches the selected capability
+3. Execute the selected capability

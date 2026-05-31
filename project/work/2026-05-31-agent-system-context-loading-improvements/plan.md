@@ -35,11 +35,11 @@ The corrected SKILL.md pattern is:
 
 ### Phase 2 — Reflow the routing manifests (5 SKILL.md)
 
-- [ ] `agent-system/SKILL.md` — Capabilities `Load when`; `Rules` index-pointer (Skill Rules Index only); `Bundled Templates` `Load when`; lazy Flow.
-- [ ] `decision-records/SKILL.md` — same; retain Index Maintenance post-step.
-- [ ] `devcontainer/SKILL.md` — same; retain the "actions load project rules by detected context" sentence.
-- [ ] `git-workflow/SKILL.md` — Capabilities `Load when`; `Rules` index-pointer with Skill + Project Rules Index rows; lazy Flow (no templates).
-- [ ] `work-tracking/SKILL.md` — same as git-workflow; preserve the remote-issue/board prerequisites.
+- [x] `agent-system/SKILL.md` — Capabilities `Load when`; `Rules` index-pointer (Skill Rules Index only); `Bundled Templates` `Load when`; lazy Flow.
+- [x] `decision-records/SKILL.md` — same; retain Index Maintenance post-step.
+- [x] `devcontainer/SKILL.md` — same; retain the "actions load project rules by detected context" sentence.
+- [x] `git-workflow/SKILL.md` — Capabilities `Load when`; `Rules` index-pointer with Skill + Project Rules Index rows; lazy Flow (no templates).
+- [x] `work-tracking/SKILL.md` — same as git-workflow; preserve the remote-issue/board prerequisites.
 
 ### Phase 3 — Reword action preconditions (15)
 
