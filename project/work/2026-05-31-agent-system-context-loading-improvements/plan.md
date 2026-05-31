@@ -51,9 +51,9 @@ The corrected SKILL.md pattern is:
 
 ### Phase 4 — Validate
 
-- [ ] Run the updated `rules/validation.md` checks against all five reflowed manifests and their actions.
-- [ ] Grep assertions: no `### Bundled Rules` heading in any routing manifest; no Execution Step that loads bundled rules before routing; no action precondition containing "all bundled rules"; every Capabilities table contains a `Load when` column.
-- [ ] Record results in `verification-results.md`.
+- [x] Run the updated `rules/validation.md` checks against all five reflowed manifests and their actions.
+- [x] Grep assertions: no `### Bundled Rules` heading in any routing manifest; no Execution Step that loads bundled rules before routing; no action precondition containing "all bundled rules"; every Capabilities table contains a `Load when` column.
+- [x] Record results in `verification-results.md`.
 
 ## Verification
 
