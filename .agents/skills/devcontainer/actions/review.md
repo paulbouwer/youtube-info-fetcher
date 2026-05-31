@@ -13,7 +13,7 @@ Analyse an existing DevContainer configuration for rules compliance, security, a
 
 ### Prerequisites
 
-This action assumes all bundled rules and templates have been loaded into context by `SKILL.md` before execution begins.
+This action assumes the rules relevant to this capability — and any templates, where the skill bundles them — have been loaded into context by `SKILL.md` before execution begins.
 
 ### Step 1: Locate and Context
 

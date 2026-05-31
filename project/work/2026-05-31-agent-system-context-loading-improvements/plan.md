@@ -43,11 +43,11 @@ The corrected SKILL.md pattern is:
 
 ### Phase 3 — Reword action preconditions (15)
 
-- [ ] agent-system: `author.md`, `review.md`.
-- [ ] decision-records: `create.md`, `review.md`.
-- [ ] devcontainer: `create.md`, `review.md`.
-- [ ] git-workflow: `commit.md`, `create-branch.md`, `create-pull-request.md`.
-- [ ] work-tracking: `create-issue.md`, `create-work-package.md`, `update-issue.md`, `update-work-package.md`.
+- [x] agent-system: `author.md`, `review.md`.
+- [x] decision-records: `create.md`, `review.md`.
+- [x] devcontainer: `create.md`, `review.md`.
+- [x] git-workflow: `commit.md`, `create-branch.md`, `create-pull-request.md`.
+- [x] work-tracking: `create-issue.md`, `create-work-package.md`, `update-issue.md`, `update-work-package.md`.
 
 ### Phase 4 — Validate
 

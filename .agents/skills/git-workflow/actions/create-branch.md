@@ -13,7 +13,7 @@ Create a rules-compliant git branch linked to an issue, ensuring traceability an
 
 ### Prerequisites
 
-This action assumes all bundled rules have been loaded into context by `SKILL.md` before execution begins.
+This action assumes the rules relevant to this capability have been loaded into context by `SKILL.md` before execution begins.
 
 ### Step 1: Assess Context
 
