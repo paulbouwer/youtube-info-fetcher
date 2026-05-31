@@ -18,22 +18,27 @@ description: <one-sentence description, action-phrased — used for keyword/inte
 
 ### Capabilities
 
-| Capability | Action | Description |
-|------------|--------|-------------|
-| <Verb> | `$<SKILL_NAME>_SKILL/actions/<action>.md` | <What this capability does> |
+| Capability | Action | Description | Load when |
+|------------|--------|-------------|-----------|
+| <Verb> | `$<SKILL_NAME>_SKILL/actions/<action>.md` | <What this capability does> | <Intent trigger that routes here> |
 
-### Bundled Rules
+### Rules
 
-| Rule | File | Description |
-|------|------|-------------|
-| Core | `$<SKILL_NAME>_SKILL/rules/core.md` | <What the rules authority covers> |
-| Checklist | `$<SKILL_NAME>_SKILL/rules/checklist.md` | <What the validation checklist covers> |
+| Index | File |
+|-------|------|
+| Skill Rules Index | `$<SKILL_NAME>_SKILL/rules/rules.index.md` |
+<!-- Add a Project Rules Index row ONLY if this skill maps 1:1 to a project-rules domain:
+| Project Rules Index | `$AGENT_SYSTEM_FOLDER/rules/<domain>/rules.index.md` | -->
+
+Consult each index and load only the rule files whose **Load when** matches the selected capability.
 
 ### Bundled Templates
 
-| Template | File | Description |
-|----------|------|-------------|
-| <Name> | `$<SKILL_NAME>_SKILL/templates/<template>.md` | <What the template produces> |
+<!-- Omit this entire section if the skill does not bundle templates. -->
+
+| Template | File | Load when |
+|----------|------|-----------|
+| <Name> | `$<SKILL_NAME>_SKILL/templates/<template>.md` | <Intent trigger for loading this template> |
 
 <!-- If the skill also references project rules from $AGENT_SYSTEM_FOLDER/rules/, add a brief sentence here noting that actions load appropriate project rules based on detected project context. -->
 
@@ -48,8 +53,8 @@ description: <one-sentence description, action-phrased — used for keyword/inte
 
 ### Execution Steps
 
-1. Load the bundled rules listed in the **Bundled Rules** section into context
-2. Load the bundled templates listed in the **Bundled Templates** section into context
-3. Determine the user's intent and select the matching capability from the **Capabilities** section
-4. Execute the selected capability — rules and templates are already in context
+1. Determine the user's intent and select the matching capability from the **Capabilities** section using its **Load when** trigger
+2. Load skill rules — and project rules only when a **Project Rules Index** is listed — via the indexes in the **Rules** section, loading only the rules whose **Load when** matches the selected capability
+3. Load bundled templates whose **Load when** matches the selected capability
+4. Execute the selected capability
 <!-- 5. <Domain-specific post-action step, if any — reference the relevant operational section by name> -->

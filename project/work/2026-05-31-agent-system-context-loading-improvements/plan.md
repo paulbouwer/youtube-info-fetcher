@@ -27,11 +27,11 @@ The corrected SKILL.md pattern is:
 
 ### Phase 1 — Codify the corrected pattern in the agent-system authority
 
-- [ ] `rules/skill.md` — rewrite Purpose, Configuration-tables spec (Capabilities `Load when`; `Rules` index-pointer replacing `Bundled Rules`; `Bundled Templates` `Load when`), and the Flow Pattern (lazy ordering). Reframe the Config-First section to support route-then-load.
-- [ ] `templates/skill.md` — update Configuration tables (`Load when` columns; lean `Rules` pointer) and Execution Steps to the lazy ordering.
-- [ ] `rules/action.md` + `templates/action.md` — reword the precondition to capability-scoped ("relevant to this capability"; keep "and templates" only where the skill bundles templates).
-- [ ] `rules/validation.md` — remove the "Bundled Rules table required" and "load bundled rules before templates before routing" checks; add checks for `Load when` on Capabilities (and Bundled Templates), the lean `Rules` index-pointer, lazy Flow ordering, and capability-scoped action preconditions.
-- [ ] Confirm `rules/checklist.md` needs no change.
+- [x] `rules/skill.md` — rewrite Purpose, Configuration-tables spec (Capabilities `Load when`; `Rules` index-pointer replacing `Bundled Rules`; `Bundled Templates` `Load when`), and the Flow Pattern (lazy ordering). Reframe the Config-First section to support route-then-load.
+- [x] `templates/skill.md` — update Configuration tables (`Load when` columns; lean `Rules` pointer) and Execution Steps to the lazy ordering.
+- [x] `rules/action.md` + `templates/action.md` — reword the precondition to capability-scoped ("relevant to this capability"; keep "and templates" only where the skill bundles templates).
+- [x] `rules/validation.md` — remove the "Bundled Rules table required" and "load bundled rules before templates before routing" checks; add checks for `Load when` on Capabilities (and Bundled Templates), the lean `Rules` index-pointer, lazy Flow ordering, and capability-scoped action preconditions.
+- [x] Confirm `rules/checklist.md` needs no change.
 
 ### Phase 2 — Reflow the routing manifests (5 SKILL.md)
 

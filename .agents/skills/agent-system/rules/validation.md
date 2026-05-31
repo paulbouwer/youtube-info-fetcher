@@ -32,12 +32,12 @@ Validate against `$AGENT_SYSTEM_SKILL/rules/skill.md § File Structure`:
 
 - [ ] Frontmatter present with `name` (kebab-case, matches folder) and `description` (action-phrased)
 - [ ] `## Variables`, `## Purpose`, `## Configuration`, `## Flow` sections present
-- [ ] **Capabilities** table present with `Capability | Action | Description` columns
-- [ ] **Bundled Rules** table present with `Rule | File | Description` columns
-- [ ] **Bundled Templates** table present with `Template | File | Description` columns
+- [ ] **Capabilities** table present with `Capability | Action | Description | Load when` columns; every `Load when` cell is a concrete intent trigger, not vague filler
+- [ ] **Rules** index-pointer table present (Skill Rules Index, plus Project Rules Index only where the skill maps 1:1 to a project-rules domain) with `Index | File` columns, followed by the instruction to load only rules whose **Load when** matches the selected capability — no eager **Bundled Rules** enumeration
+- [ ] **Bundled Templates** table, if the skill bundles templates, present with `Template | File | Load when` columns; every `Load when` cell is a concrete trigger, not vague filler
 - [ ] All paths in tables use skill variables, never bare paths
 - [ ] **Flow** section has `### Prerequisites` checklist and `### Execution Steps` numbered list
-- [ ] Execution Steps load bundled rules before bundled templates before routing intent
+- [ ] Execution Steps route intent to a capability via **Load when** first, then load only the capability-matched rules (via the indexes), then the capability-matched templates, then execute — never load all bundled rules up front
 - [ ] No domain-specific operational concerns scattered into actions — aggregated in `SKILL.md`
 - [ ] Heading depth ≤ H3
 
@@ -47,7 +47,7 @@ Validate against `$AGENT_SYSTEM_SKILL/rules/action.md § File Structure`:
 
 - [ ] Filename is kebab-case verb or verb-phrase
 - [ ] `## Variables`, `## Purpose`, `## Flow` sections present
-- [ ] `### Prerequisites` declares rules/templates already loaded by `SKILL.md`
+- [ ] `### Prerequisites` declares the capability-relevant rules (and templates, where the skill bundles them) already loaded by `SKILL.md` — not "all bundled rules"
 - [ ] No bundled-rules loading inside the action (SKILL.md owns this)
 - [ ] No operational concerns inside the action (SKILL.md owns this)
 - [ ] Each step starts with a `**Goal:**` sentence
