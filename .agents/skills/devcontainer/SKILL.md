@@ -18,28 +18,24 @@ This skill provides capabilities for creating and reviewing DevContainer configu
 
 ### Capabilities
 
-| Capability | Action | Description |
-|------------|--------|-------------|
-| Create | `$DEVCONTAINER_SKILL/actions/create.md` | Generate a rules-compliant DevContainer configuration |
-| Review | `$DEVCONTAINER_SKILL/actions/review.md` | Analyse an existing DevContainer for compliance and improvements |
+| Capability | Action | Description | Load when |
+|------------|--------|-------------|-----------|
+| Create | `$DEVCONTAINER_SKILL/actions/create.md` | Generate a rules-compliant DevContainer configuration | User wants to create a new DevContainer configuration |
+| Review | `$DEVCONTAINER_SKILL/actions/review.md` | Analyse an existing DevContainer for compliance and improvements | User wants to review or improve an existing DevContainer configuration |
 
-### Bundled Rules
+### Rules
 
-| Rule | File | Description |
-|----------|------|-------------|
-| Rules Index | `$DEVCONTAINER_SKILL/rules/rules.index.md` | Lazy-loading index for this skill's rules |
-| Core | `$DEVCONTAINER_SKILL/rules/core.md` | Base image, lifecycle hooks, container configuration, file structure |
-| Extensions | `$DEVCONTAINER_SKILL/rules/extensions.md` | VS Code extension requirements and guidelines |
-| Features | `$DEVCONTAINER_SKILL/rules/features.md` | DevContainer features configuration and versioning |
-| Assembly | `$DEVCONTAINER_SKILL/rules/assembly.md` | Composition, dedup, conflict resolution, and lifecycle script filename assignment across loaded contributing rules |
-| Security | `$DEVCONTAINER_SKILL/rules/security.md` | Security requirements and risk guidance |
-| Checklist | `$DEVCONTAINER_SKILL/rules/checklist.md` | Consolidated compliance checklist |
+| Index | File |
+|-------|------|
+| Skill Rules Index | `$DEVCONTAINER_SKILL/rules/rules.index.md` |
+
+Consult each index and load only the rule files whose **Load when** matches the selected capability.
 
 ### Bundled Templates
 
-| Template | File | Description |
-|----------|------|-------------|
-| Base Configuration | `$DEVCONTAINER_SKILL/templates/devcontainer.json` | Base DevContainer configuration template |
+| Template | File | Load when |
+|----------|------|-----------|
+| Base Configuration | `$DEVCONTAINER_SKILL/templates/devcontainer.json` | Running the Create capability (generating a new configuration) |
 
 Actions load additional project rules from `$AGENT_SYSTEM_FOLDER/rules/` based on the detected project context (languages, formats, provider).
 
@@ -52,7 +48,7 @@ Actions load additional project rules from `$AGENT_SYSTEM_FOLDER/rules/` based o
 
 ### Execution Steps
 
-1. Load the bundled rules listed in the **Bundled Rules** section into context
-2. Load the bundled templates listed in the **Bundled Templates** section into context
-3. Determine the user's intent and select the matching capability from the **Capabilities** section
-4. Execute the selected capability — bundled rules and templates are already in context; the action loads project rules from `$AGENT_SYSTEM_FOLDER/rules/` based on detected project context
+1. Determine the user's intent and select the matching capability from the **Capabilities** section using its **Load when** trigger
+2. Load skill rules via the **Rules** index — only the rules whose **Load when** matches the selected capability
+3. Load bundled templates whose **Load when** matches the selected capability
+4. Execute the selected capability — the action loads project rules from `$AGENT_SYSTEM_FOLDER/rules/` based on detected project context

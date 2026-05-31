@@ -20,7 +20,7 @@ Rules for authoring an action file at `$AGENT_SYSTEM_FOLDER/skills/<domain>/acti
 
 ## Purpose
 
-An action is a step-by-step workflow for a specific capability. It assumes the skill manifest has already loaded rules and templates. Actions are routed to from `SKILL.md`'s Capabilities table.
+An action is a step-by-step workflow for a specific capability. It assumes the skill manifest has already loaded the rules relevant to this capability — and any templates, where the skill bundles them. Actions are routed to from `SKILL.md`'s Capabilities table.
 
 ## File Structure
 
@@ -36,7 +36,7 @@ An action is a step-by-step workflow for a specific capability. It assumes the s
 ```markdown
 ### Prerequisites
 
-This action assumes all bundled rules and templates have been loaded into context by `SKILL.md` before execution begins.
+This action assumes the rules relevant to this capability — and any templates, where the skill bundles them — have been loaded into context by `SKILL.md` before execution begins.
 
 ### Step 1: {Verb Phrase}
 
@@ -51,7 +51,7 @@ This action assumes all bundled rules and templates have been loaded into contex
 
 ## Rules
 
-- No rules-loading steps — `SKILL.md` owns that. An action that loads its own bundled rules is non-conformant.
+- No bundled skill-rules loading steps — `SKILL.md` owns capability-scoped skill-rule loading. An action that loads its own bundled skill rules is non-conformant. (Actions may still load *project* rules via the explicit project-context detection pattern below.)
 - No operational concerns (e.g. index maintenance, post-action file moves) — those are aggregated in `SKILL.md`. The action references them by section name when execution requires them.
 - Each step starts with a **Goal** sentence. Steps without a goal read as instructions stripped of intent.
 - Steps use descriptive verb-phrase titles (e.g. "Assess Context", "Guided Discovery", "Construct Y-Statement"). Avoid vague titles like "Process" or "Handle".

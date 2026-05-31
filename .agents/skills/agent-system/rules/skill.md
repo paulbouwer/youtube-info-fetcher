@@ -21,7 +21,7 @@ Rules for authoring a skill manifest at `$AGENT_SYSTEM_FOLDER/skills/<domain>/SK
 
 ## Purpose
 
-A skill manifest is the orchestration layer. It owns rules loading, template loading, intent routing, and any cross-cutting operational concerns (like index maintenance). Actions never load bundled rules themselves — `SKILL.md` does it once, then routes.
+A skill manifest is the orchestration layer. It owns intent routing, lazy rules and template loading, and any cross-cutting operational concerns (like index maintenance). It honours the system's lazy-loading philosophy: it routes intent to a capability **first**, then loads only the rules and templates whose `Load when` matches that capability — never all bundled rules up front. Actions never load bundled rules themselves — `SKILL.md` performs the capability-scoped selection, then routes.
 
 ## File Structure
 
@@ -30,13 +30,13 @@ A skill manifest is the orchestration layer. It owns rules loading, template loa
 | Frontmatter | Yes | `name`, `description` (used for keyword routing) |
 | `## Variables` | Yes | Inheritance declaration |
 | `## Purpose` | Yes | One-sentence skill description |
-| `## Configuration` | Yes | Tables: Capabilities, Bundled Rules, Bundled Templates |
+| `## Configuration` | Yes | Tables: Capabilities (with `Load when`), Rules (index-pointer), Bundled Templates (with `Load when`, only if the skill bundles templates) |
 | Operational sections | If needed | Domain-specific concerns (e.g. Index Maintenance) |
 | `## Flow` | Yes | Prerequisites checklist + Execution Steps |
 
 ### Config-First Rationale
 
-Configuration sections appear *before* Flow intentionally. AI agents read documents top-to-bottom. When the Flow section references "the Capabilities table" or "bundled rules", those references must already exist in the agent's context. Forward references (mentioning something before it is defined) increase cognitive overhead and hallucination risk.
+Configuration sections appear *before* Flow intentionally. AI agents read documents top-to-bottom. When the Flow section references "the Capabilities table" or "the Rules section", those references must already exist in the agent's context. Forward references (mentioning something before it is defined) increase cognitive overhead and hallucination risk. The Configuration tables are routing metadata — reading them is cheap; loading the rule and template *files* they point at is deferred until a capability is selected (see Flow Pattern).
 
 ## Frontmatter
 
@@ -53,28 +53,36 @@ description: <one-sentence what the skill does>
 
 ## Configuration Tables
 
-Three tables in fixed order:
+Capabilities and Rules are required. Bundled Templates appears only when the skill bundles skill-level templates.
 
 ```markdown
 ### Capabilities
 
-| Capability | Action | Description |
-|------------|--------|-------------|
+| Capability | Action | Description | Load when |
+|------------|--------|-------------|-----------|
 
-### Bundled Rules
+### Rules
 
-| Rule | File | Description |
-|------|------|-------------|
+| Index | File |
+|-------|------|
 
 ### Bundled Templates
 
-| Template | File | Description |
-|----------|------|-------------|
+| Template | File | Load when |
+|----------|------|-----------|
 ```
+
+The **Capabilities** table MUST carry a `Load when` column — a concrete intent trigger per capability used to route the user's request to a capability.
+
+The **Rules** table is a lean index-pointer, not an enumeration of every rule file. It lists the *Skill Rules Index* (`$<SKILL>_SKILL/rules/rules.index.md`) and, where the skill maps 1:1 to a project-rules domain, the *Project Rules Index* (`$AGENT_SYSTEM_FOLDER/rules/<domain>/rules.index.md`). Immediately after the table, include the instruction:
+
+> Consult each index and load only the rule files whose **Load when** matches the selected capability.
+
+The **Bundled Templates** table, when present, MUST carry a `Load when` column so templates are loaded per-capability rather than all at once.
 
 All paths in tables MUST use skill variables: `$<SKILL>_SKILL/actions/create.md`.
 
-When a skill also references project rules from `$AGENT_SYSTEM_FOLDER/rules/` (e.g. language, format, or provider rules), add a brief sentence after the Bundled Templates table noting that actions load appropriate project rules based on detected project context. The actions own this loading — the skill manifest does not enumerate or table-list project rules.
+When a skill references project rules from `$AGENT_SYSTEM_FOLDER/rules/` but does not map 1:1 to a single project-rules domain (e.g. it loads language, format, or provider rules by detected context), omit the Project Rules Index row and instead add a brief sentence after the tables noting that actions load appropriate project rules based on detected project context. The actions own this loading — the skill manifest does not enumerate or table-list project rules.
 
 ## Flow Pattern
 
@@ -86,16 +94,16 @@ When a skill also references project rules from `$AGENT_SYSTEM_FOLDER/rules/` (e
 
 ### Execution Steps
 
-1. Load the bundled rules listed in the **Bundled Rules** section into context
-2. Load the bundled templates listed in the **Bundled Templates** section into context
-3. Determine the user's intent and select the matching capability from the **Capabilities** section
-4. Execute the selected capability — rules and templates are already in context
+1. Determine the user's intent and select the matching capability from the **Capabilities** section using its **Load when** trigger
+2. Load skill rules — and project rules only when a **Project Rules Index** is listed — via the indexes in the **Rules** section, loading only the rules whose **Load when** matches the selected capability
+3. Load bundled templates whose **Load when** matches the selected capability
+4. Execute the selected capability
 5. [Domain-specific post-action step, if any — reference the relevant operational section by name]
 ```
 
 ## Rules
 
-- The skill owns all bundled rules and template loading — actions never load bundled rules themselves
+- The skill owns lazy rules and template loading — it routes intent to a capability first, then loads only the rules and templates whose `Load when` matches that capability. Actions never load bundled rules themselves
 - Actions own project-rules loading — they determine which rules from `$AGENT_SYSTEM_FOLDER/rules/` to load based on detected project context (languages, formats, provider)
 - Operational concerns (index maintenance, file moves, post-action notifications) are aggregated in the skill manifest, not scattered across actions
 - Execution-step references to other sections within the same file use the section name (e.g. "as per the **Index Maintenance** section")

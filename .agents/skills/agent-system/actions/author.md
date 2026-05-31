@@ -13,7 +13,7 @@ Create a new agent-system asset, or modify an existing one, by routing the reque
 
 ### Prerequisites
 
-This action assumes all bundled rules and templates have been loaded into context by `SKILL.md` before execution begins.
+This action assumes the rules relevant to this capability — and any templates, where the skill bundles them — have been loaded into context by `SKILL.md` before execution begins.
 
 ### Step 1: Determine Asset Type and Mode
 
@@ -37,7 +37,7 @@ If the asset is a **per-domain rules family** (`tooling.md` + `development-envir
 
 **Goal:** Bring the relevant rule and template into focus.
 
-The bundled rules and templates are already in context (loaded by `SKILL.md`). For this step:
+The rule and template matching the asset type are in context (loaded by `SKILL.md`). For this step:
 
 1. Re-read the rule matching the asset type.
 2. Re-read the template matching the asset type.
@@ -55,7 +55,7 @@ For per-domain `devcontainer.md` or `vscode.md` files, the matching rule is `$AG
 
 In both modes, work through the rule's required sections in order. Ask the user only the questions needed to fill in placeholders the rule requires:
 
-- For a `SKILL.md`: skill name, description, capabilities, bundled rules filenames and descriptions, bundled templates, prerequisites, any operational concerns.
+- For a `SKILL.md`: skill name, description, capabilities with `Load when` triggers, the lean `Rules` index-pointer, bundled templates with `Load when` (if any), prerequisites, any operational concerns.
 - For an action: action name, purpose, steps (with goals), error scenarios.
 - For a rule: domain title, Quick Reference rules, domain sections.
 - For a checklist: validation groups and items, each group's `§` reference into the rules authority.

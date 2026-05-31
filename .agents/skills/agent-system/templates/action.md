@@ -13,7 +13,7 @@
 
 ### Prerequisites
 
-This action assumes all bundled rules and templates have been loaded into context by `SKILL.md` before execution begins.
+This action assumes the rules relevant to this capability — and any templates, where the skill bundles them — have been loaded into context by `SKILL.md` before execution begins.
 
 <!-- If this action loads project rules (languages, formats, tools), declare the detection step here:
 **Detect project context.** Inspect the repository to determine which project rules apply (e.g. read `$AGENT_SYSTEM_FOLDER/AGENTS.md` for `$REPO_PROVIDER`). Load the matching rules from `$AGENT_SYSTEM_FOLDER/rules/`. Honour precedence per `$AGENT_SYSTEM_SKILL/rules/conventions.md § Precedence Model`.

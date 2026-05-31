@@ -12,51 +12,42 @@ description: Author and review agent-system assets — skills, actions, rules, c
 
 ## Purpose
 
-This skill provides capabilities for creating, modifying, and reviewing agent-system assets — the skills, actions, rules, checklists, system-level `AGENTS.md` files, and per-domain rules families that define how the agent-system itself works. The bundled rules encode the invariants of the system; this skill ensures every authored asset stays compliant.
+This skill provides capabilities for creating, modifying, and reviewing agent-system assets — the skills, actions, rules, checklists, system-level `AGENTS.md` files, and per-domain rules families that define how the agent-system itself works. Its rules encode the invariants of the system; this skill ensures every authored asset stays compliant.
 
 ## Configuration
 
 ### Capabilities
 
-| Capability | Action | Description |
-|------------|--------|-------------|
-| Author | `$AGENT_SYSTEM_SKILL/actions/author.md` | Create a new agent-system asset, or modify an existing one, by routing to the matching rule and template |
-| Review | `$AGENT_SYSTEM_SKILL/actions/review.md` | Validate one or more agent-system assets against the bundled validation checklist |
+| Capability | Action | Description | Load when |
+|------------|--------|-------------|-----------|
+| Author | `$AGENT_SYSTEM_SKILL/actions/author.md` | Create a new agent-system asset, or modify an existing one, by routing to the matching rule and template | User wants to create or modify any agent-system asset (SKILL.md, action, rule, checklist, AGENTS.md, rules.index.md, or domain rule family) |
+| Review | `$AGENT_SYSTEM_SKILL/actions/review.md` | Validate one or more agent-system assets against the bundled validation checklist | User wants to validate or review one or more existing agent-system assets |
 
-### Bundled Rules
+### Rules
 
-| Rule | File | Description |
-|------|------|-------------|
-| Rules Index | `$AGENT_SYSTEM_SKILL/rules/rules.index.md` | Lazy-loading index for this skill's rules; also declares which rules are non-overridable |
-| Conventions | `$AGENT_SYSTEM_SKILL/rules/conventions.md` | Universal rules: variable system, formatting, cross-references, one-way visibility, composability, mutability contract, precedence model |
-| Skill | `$AGENT_SYSTEM_SKILL/rules/skill.md` | `SKILL.md` manifest pattern |
-| Action | `$AGENT_SYSTEM_SKILL/rules/action.md` | `actions/<action>.md` workflow pattern |
-| Rule | `$AGENT_SYSTEM_SKILL/rules/rule.md` | Skill-bundled `rules/<topic>.md` authoring pattern |
-| Checklist | `$AGENT_SYSTEM_SKILL/rules/checklist.md` | Skill-bundled validation checklist asset pattern |
-| AGENTS.md | `$AGENT_SYSTEM_SKILL/rules/agents-md.md` | Root and agent-system `AGENTS.md` patterns |
-| Rules Index | `$AGENT_SYSTEM_SKILL/rules/rules-index.md` | `rules.index.md` registry pattern (root category map + per-category file map) |
-| Domain Core | `$AGENT_SYSTEM_SKILL/rules/domain-core.md` | Per-domain `<category>/<domain>/core.md` pattern |
-| Domain Tooling | `$AGENT_SYSTEM_SKILL/rules/tooling.md` | Per-domain `tooling.md` pattern |
-| Domain Development Environment | `$AGENT_SYSTEM_SKILL/rules/development-environment.md` | Per-domain `development-environment.md` index + `devcontainer.md` + `vscode.md` family pattern |
-| Validation | `$AGENT_SYSTEM_SKILL/rules/validation.md` | Single validation checklist used by the Review action; sections grouped by asset type |
+| Index | File |
+|-------|------|
+| Skill Rules Index | `$AGENT_SYSTEM_SKILL/rules/rules.index.md` |
+
+Consult the index and load only the rule files whose **Load when** matches the selected capability and the asset type in scope. `conventions.md` is always loaded; `validation.md` loads for the Review capability.
 
 ### Bundled Templates
 
-| Template | File | Description |
-|----------|------|-------------|
-| Skill | `$AGENT_SYSTEM_SKILL/templates/skill.md` | `SKILL.md` skeleton |
-| Action | `$AGENT_SYSTEM_SKILL/templates/action.md` | Action-file skeleton |
-| Rule | `$AGENT_SYSTEM_SKILL/templates/rule.md` | Skill-bundled rule skeleton |
-| Checklist | `$AGENT_SYSTEM_SKILL/templates/checklist.md` | Skill-bundled validation-checklist skeleton |
-| AGENTS.md | `$AGENT_SYSTEM_SKILL/templates/agents-md.md` | Combined skeleton covering root and agent-system shapes |
-| Rules Index | `$AGENT_SYSTEM_SKILL/templates/rules-index.md` | `rules.index.md` skeleton (root and per-category variants) |
-| Domain Core | `$AGENT_SYSTEM_SKILL/templates/domain-core.md` | Per-domain `core.md` skeleton |
-| Domain Tooling | `$AGENT_SYSTEM_SKILL/templates/tooling.md` | Per-domain `tooling.md` skeleton |
-| Domain Development Environment | `$AGENT_SYSTEM_SKILL/templates/development-environment.md` | Per-domain dev-env index skeleton |
-| DevContainer | `$AGENT_SYSTEM_SKILL/templates/devcontainer.md` | Per-domain `devcontainer.md` skeleton |
-| VS Code | `$AGENT_SYSTEM_SKILL/templates/vscode.md` | Per-domain `vscode.md` skeleton |
+| Template | File | Load when |
+|----------|------|-----------|
+| Skill | `$AGENT_SYSTEM_SKILL/templates/skill.md` | Authoring a `SKILL.md` |
+| Action | `$AGENT_SYSTEM_SKILL/templates/action.md` | Authoring an action file |
+| Rule | `$AGENT_SYSTEM_SKILL/templates/rule.md` | Authoring a skill-bundled rule (`rules/<topic>.md`) |
+| Checklist | `$AGENT_SYSTEM_SKILL/templates/checklist.md` | Authoring a `checklist.md` or `validation.md` |
+| AGENTS.md | `$AGENT_SYSTEM_SKILL/templates/agents-md.md` | Authoring a root or agent-system `AGENTS.md` |
+| Rules Index | `$AGENT_SYSTEM_SKILL/templates/rules-index.md` | Authoring a `rules.index.md` (root or per-category) |
+| Domain Core | `$AGENT_SYSTEM_SKILL/templates/domain-core.md` | Authoring a domain `core.md` |
+| Domain Tooling | `$AGENT_SYSTEM_SKILL/templates/tooling.md` | Authoring a domain `tooling.md` |
+| Domain Development Environment | `$AGENT_SYSTEM_SKILL/templates/development-environment.md` | Authoring a domain `development-environment.md` |
+| DevContainer | `$AGENT_SYSTEM_SKILL/templates/devcontainer.md` | Authoring a domain `devcontainer.md` |
+| VS Code | `$AGENT_SYSTEM_SKILL/templates/vscode.md` | Authoring a domain `vscode.md` |
 
-This skill operates exclusively on agent-system assets and does not load project rules from `$AGENT_SYSTEM_FOLDER/rules/`. The bundled rules above are sufficient for every supported asset type.
+This skill operates exclusively on agent-system assets and does not load project rules from `$AGENT_SYSTEM_FOLDER/rules/`; it lists only the Skill Rules Index.
 
 ### Asset-Type Routing
 
@@ -87,7 +78,7 @@ Universal rules from `conventions.md` apply to every asset type.
 
 ### Execution Steps
 
-1. Load the bundled rules listed in the **Bundled Rules** section into context
-2. Load the bundled templates listed in the **Bundled Templates** section into context
-3. Determine the user's intent and select the matching capability from the **Capabilities** section
-4. Execute the selected capability — rules and templates are already in context
+1. Determine the user's intent and select the matching capability from the **Capabilities** section using its **Load when** trigger
+2. For each asset in scope, detect its asset type (see **Asset-Type Routing**) and load via the **Rules** index only the matching rule — `conventions.md` is always loaded; `validation.md` loads for Review
+3. For the Author capability, load the bundled template matching each asset type per **Asset-Type Routing**
+4. Execute the selected capability

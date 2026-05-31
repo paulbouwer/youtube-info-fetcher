@@ -13,7 +13,7 @@ Analyse an existing decision record for completeness, quality, and rules complia
 
 ### Prerequisites
 
-This action assumes all bundled rules and templates have been loaded into context by `SKILL.md` before execution begins.
+This action assumes the rules relevant to this capability — and any templates, where the skill bundles them — have been loaded into context by `SKILL.md` before execution begins.
 
 ### Step 1: Locate Decision Record
 
