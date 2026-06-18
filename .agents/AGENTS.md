@@ -8,6 +8,8 @@
 - `DECISION_RECORDS_SKILL := $AGENT_SYSTEM_FOLDER/skills/decision-records`
 - `GIT_WORKFLOW_SKILL := $AGENT_SYSTEM_FOLDER/skills/git-workflow`
 - `WORK_TRACKING_SKILL := $AGENT_SYSTEM_FOLDER/skills/work-tracking`
+- `RESEARCH_SKILL := $AGENT_SYSTEM_FOLDER/skills/research`
+- `GRILL_ME_SKILL := $AGENT_SYSTEM_FOLDER/skills/grill-me`
 
 ## Overview
 
@@ -58,6 +60,8 @@ Once loaded, the skill resolves the user's intent to one of its actions (see eac
 | Decision Records | decision record, DR, architectural decision, ADR | `$DECISION_RECORDS_SKILL` | create, review |
 | Git Workflow | git, branch, commit, pull request, PR, conventional commit | `$GIT_WORKFLOW_SKILL` | create-branch, commit, create-pull-request |
 | Work Tracking | issue, work item, work package, board, tracking, sprint, acceptance criteria | `$WORK_TRACKING_SKILL` | create-issue, update-issue, create-work-package, update-work-package |
+| Research | research, investigate, dossier, evidence, sources, synthesise | `$RESEARCH_SKILL` | create-research, synthesise-research |
+| Grill Me             | grill me, stress-test, interview, design critique          | `$GRILL_ME_SKILL`             | (interactive interview — no discrete actions) |
 
 ## Rules
 
