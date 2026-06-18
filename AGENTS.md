@@ -26,6 +26,7 @@ Project documentation and planning artefacts for the repo are located in the `$P
 $PROJECT_FOLDER/
 ├── decision-records/             # Architectural and technical decisions
 ├── work/                         # Work packages (planned units of work)
+├── research/                     # Standalone citation-backed research artifacts
 ├── future-enhancement-ideas.md   # Ideas beyond current scope 
 └── learnings.md                  # Cross-cutting patterns and insights
 ```
@@ -33,6 +34,8 @@ $PROJECT_FOLDER/
 - **Decision Records** - Capture the context, rationale, and consequences of significant decisions related to the repo. Each decision record is located in the `$PROJECT_FOLDER/decision-records/` folder. **USE** the Decision Record skill and rules when working with decision records
 
 - **Work Packages** - Primary unit of planned work. Each work package is a folder in `$PROJECT_FOLDER/work/` containing a specification, plan, research, and verification results. Work packages are linked with a remote issue on the configured work tracking provider. **USE** the Work Tracking skill and rules when working with work packages.
+
+- **Research** - Citation-backed research artifacts (dossiers and position syntheses). Standalone research is located in `$PROJECT_FOLDER/research/<dated-slug>/`; research tied to a work package lives in that work package's `research/` folder. **USE** the Research skill and rules when producing or synthesising research.
 
 - **Future Enhancement Ideas** - Enhancement ideas and feature concepts are captured in `$PROJECT_FOLDER/future-enhancement-ideas.md`. **CONSULT** when planning new capabilities or looking for contribution ideas. **UPDATE** when a planning session surfaces ideas beyond current scope.
 
