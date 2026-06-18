@@ -87,3 +87,39 @@ sources, implementation-edit requests, and filename conflicts.
   Skill Catalog row. It is therefore referenced by name (the `grill-me` skill), not by a
   `$VAR` (which would be undeclared) or a bare path. Worth deciding later whether `grill-me`
   should be registered for consistency.
+
+## Phase 3 — Author synthesise-research
+
+Date: 2026-06-18
+
+### What was done
+
+Authored `actions/synthesise-research.md` through the `agent-system` `author` action
+against `action.md` and the action template. Five goal-prefixed steps:
+
+1. Collect the Dossiers — one or more inputs; resolve the position-document location. (REQ010)
+2. Read and Compare the Dossiers — read in full; build a consolidated, deduplicated `[F##]`
+   index; separate evidence from inference.
+3. Interrogate Before Forming a Position — pressure-test via the `grill-me` skill. (REQ012)
+4. Write the Summary and Position — fill the template (position + opinion + Gaps / Next
+   Research); no action/routing recommendations. (REQ010, REQ011)
+5. Stop at the Read-Only Boundary — no implementation edits.
+
+The Step 4 section list enumerates every `summary-position.md` template section, closing the
+Phase 1 traceability gap (the template now traces back to this action's authority).
+
+### Verification
+
+- Self-validated against `agent-system` `validation.md` (Universal + Action groups): only
+  declared variables, no `---` separators, no emojis/arrows, every step carries a `**Goal:**`,
+  Error Handling uses the `| Scenario | Action |` table.
+- AC004 satisfied (`synthesise-research` consumes one or more dossiers; emits position +
+  opinion + Gaps / Next Research; no action/routing recommendations).
+- AC007 satisfied (both `create-research` and `synthesise-research` reference the `grill-me`
+  skill).
+
+### Learnings and things to improve
+
+- Both actions now share the same `grill-me` reference pattern (`$GRILL_ME_SKILL`) and the
+  same read-only-boundary close-out step. If a third action is ever added, this repetition
+  would be worth factoring into a shared rule section rather than restating per action.

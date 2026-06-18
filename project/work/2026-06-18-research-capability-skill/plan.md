@@ -61,7 +61,7 @@ Author via the `agent-system` `author` action against `action.md` + the `action`
 
 Author via the `agent-system` `author` action against `action.md` + the `action` template.
 
-- [ ] Create `.agents/skills/research/actions/synthesise-research.md`: consume one or more
+- [x] Create `.agents/skills/research/actions/synthesise-research.md`: consume one or more
       dossiers; produce a `summary-position` document with position + opinion + "Gaps / Next
       Research"; no action/routing recommendations; reference `grill-me` before forming a position.
       (REQ010, REQ011, REQ012)
