@@ -3,7 +3,7 @@
 ## Variables
 
 - Inherits `$AGENT_SYSTEM_FOLDER` and `$PROJECT_FOLDER` from root `AGENTS.md`
-- Inherits `$RESEARCH_SKILL` from `$AGENT_SYSTEM_FOLDER/AGENTS.md`
+- Inherits `$RESEARCH_SKILL` and `$GRILL_ME_SKILL` from `$AGENT_SYSTEM_FOLDER/AGENTS.md`
 
 ## Purpose
 
@@ -34,7 +34,7 @@ Explicit user intent always wins over context detection. If intent is absent and
 
 **Goal:** Establish a clear topic and scope, and choose the research mode.
 
-Establish the topic, the scope (what is covered and what is excluded), and the evidence sources in play. When scope or requirements are ambiguous and the answer is not in the sources, resolve the ambiguity by interrogation using the `grill-me` skill — reference it; do not duplicate its questioning here.
+Establish the topic, the scope (what is covered and what is excluded), and the evidence sources in play. When scope or requirements are ambiguous and the answer is not in the sources, resolve the ambiguity by interrogation using the `grill-me` skill (`$GRILL_ME_SKILL`) — reference it; do not duplicate its questioning here.
 
 Select the mode per `$RESEARCH_SKILL/rules/core.md § Research Modes`:
 
@@ -92,7 +92,7 @@ Per `$RESEARCH_SKILL/rules/core.md § Read-Only Research Boundary`, the dossier 
 
 | Scenario | Action |
 |----------|--------|
-| Scope or requirements ambiguous, not answerable from sources | Resolve by interrogation using the `grill-me` skill |
+| Scope or requirements ambiguous, not answerable from sources | Resolve by interrogation using the `grill-me` skill (`$GRILL_ME_SKILL`) |
 | Output location ambiguous (no explicit intent, unclear context) | Confirm the location with the user before researching |
 | User requests `full-swarm` | Explain it is deferred and not selectable; offer `focused-swarm` |
 | A source cannot be read | Record it in the dossier's Gaps / Next Research section; do not cite it speculatively |
