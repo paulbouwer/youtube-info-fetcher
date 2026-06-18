@@ -29,23 +29,23 @@ Author every file below via the `agent-system` `author` action against its gover
 (`skill.md` for `SKILL.md`, `rule.md` for each rule, `rules-index.md` for `rules.index.md`,
 `conventions.md` + templates throughout).
 
-- [ ] Create `.agents/skills/research/SKILL.md` (minimalist, trigger-first; Capabilities table
+- [x] Create `.agents/skills/research/SKILL.md` (minimalist, trigger-first; Capabilities table
       with `Load when`; lean `Rules` index-pointer; Bundled Templates table with `Load when`;
       lazy Flow). Define skill Variables block. (REQ001, REQ002)
-- [ ] Create `.agents/skills/research/rules/core.md` — artifact-first; read-only boundary; modes
+- [x] Create `.agents/skills/research/rules/core.md` — artifact-first; read-only boundary; modes
       (`single`/`focused-swarm`); output-location resolution (explicit-intent-first, context
       fallback; standalone dated folder vs work-package flat `research/`); focused-swarm capture
       + synthesis; completion criteria. (REQ013)
-- [ ] Create `.agents/skills/research/rules/citations.md` — `[F##]` source index; local refs as
+- [x] Create `.agents/skills/research/rules/citations.md` — `[F##]` source index; local refs as
       plain paths with line ranges; external refs as markdown links; read-don't-guess; separate
       evidence from inference. (REQ014)
-- [ ] Create `.agents/skills/research/rules/dossier.md` — required sections; `YYYY-MM-DD-<topic>.md`
+- [x] Create `.agents/skills/research/rules/dossier.md` — required sections; `YYYY-MM-DD-<topic>.md`
       naming; standalone-folder vs work-package placement. (REQ015)
-- [ ] Create `.agents/skills/research/rules/rules.index.md` — file map listing the three rules,
+- [x] Create `.agents/skills/research/rules/rules.index.md` — file map listing the three rules,
       with a `## Non-Overridable Rules` section covering `citations.md` and the read-only-boundary
       portion of `core.md`. (REQ016)
-- [ ] Create `.agents/skills/research/templates/research-dossier.md` (single-topic dossier). (REQ017)
-- [ ] Create `.agents/skills/research/templates/summary-position.md` (cross-dossier synthesis). (REQ018)
+- [x] Create `.agents/skills/research/templates/research-dossier.md` (single-topic dossier). (REQ017)
+- [x] Create `.agents/skills/research/templates/summary-position.md` (cross-dossier synthesis). (REQ018)
 
 ### Phase 2 — Author `create-research`
 
