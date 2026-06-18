@@ -68,10 +68,10 @@ Author via the `agent-system` `author` action against `action.md` + the `action`
 
 ### Phase 4 — Wire the registry
 
-- [ ] Add `RESEARCH_SKILL := $AGENT_SYSTEM_FOLDER/skills/research` to `.agents/AGENTS.md § Variables`. (REQ003)
-- [ ] Add a Skill Catalog registry row (keywords: `research, investigate, dossier, evidence,
+- [x] Add `RESEARCH_SKILL := $AGENT_SYSTEM_FOLDER/skills/research` to `.agents/AGENTS.md § Variables`. (REQ003)
+- [x] Add a Skill Catalog registry row (keywords: `research, investigate, dossier, evidence,
       sources, synthesise`; actions: `create-research, synthesise-research`). (REQ003)
-- [ ] Note research outputs in the root `AGENTS.md § Project System` documentation map. (REQ004)
+- [x] Note research outputs in the root `AGENTS.md § Project System` documentation map. (REQ004)
 
 ### Phase 5 — Validate
 

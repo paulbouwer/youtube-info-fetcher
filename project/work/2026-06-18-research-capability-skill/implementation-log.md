@@ -123,3 +123,32 @@ Phase 1 traceability gap (the template now traces back to this action's authorit
 - Both actions now share the same `grill-me` reference pattern (`$GRILL_ME_SKILL`) and the
   same read-only-boundary close-out step. If a third action is ever added, this repetition
   would be worth factoring into a shared rule section rather than restating per action.
+
+## Phase 4 — Wire the registry
+
+Date: 2026-06-18
+
+### What was done
+
+- Defined `RESEARCH_SKILL := $AGENT_SYSTEM_FOLDER/skills/research` in
+  `.agents/AGENTS.md § Variables`. (REQ003)
+- Added a Skill Catalog registry row: Research / keywords `research, investigate, dossier,
+  evidence, sources, synthesise` / actions `create-research, synthesise-research`. (REQ003)
+- Noted research outputs in the root `AGENTS.md § Project System` map — added a `research/`
+  entry to the directory tree and a Research bullet describing standalone and work-package
+  placement. (REQ004)
+
+### Verification
+
+- All seven skill variables are defined and each has a matching Catalog row (no orphans); the
+  Catalog references only defined variables.
+- Every `$RESEARCH_SKILL` reference across the seven research skill files now resolves.
+- AC008 partially satisfied: `RESEARCH_SKILL` and the registry row exist. The remaining
+  clause (passes the `agent-system` review checklist) is verified in Phase 5.
+
+### Learnings and things to improve
+
+- Variable and Catalog ordering were kept consistent (Work Tracking, Research, Grill Me) in
+  both the Variables block and the registry, so a reader can scan either in the same order.
+- The pre-existing `Grill Me` Catalog row uses padded-cell alignment that differs from the
+  other rows; left as-is to avoid unrelated churn, but the table style is mixed.
