@@ -51,3 +51,39 @@ matching templates. Seven files created under `.agents/skills/research/`:
   ensure that action enumerates them so the template still traces back to an authority.
 - Nested backticks in `Good:` / `Bad:` examples render poorly; prefer prose-with-inline-code
   over wrapping a whole example line in backticks.
+
+## Phase 2 — Author create-research
+
+Date: 2026-06-18
+
+### What was done
+
+Authored `actions/create-research.md` through the `agent-system` `author` action against
+`action.md` and the action template. Six goal-prefixed steps:
+
+1. Resolve Output Location — explicit-intent-first, context-detection fallback. (REQ006)
+2. Scope the Research and Select Mode — `single` default, `focused-swarm` for user-described
+   lenses; `full-swarm` not offered; `grill-me` referenced for ambiguity. (REQ007, REQ009)
+3. Gather Evidence — code, docs, and web sources; cited per `citations.md`. (REQ008)
+4. Synthesise Findings into One Dossier — focused-swarm capture and synthesis.
+5. Write the Dossier — fill the template, naming and placement per `dossier.md`. (REQ005)
+6. Stop at the Read-Only Boundary — no implementation edits, no routing recommendations. (REQ005)
+
+An Error Handling table covers ambiguous scope/location, `full-swarm` requests, unreadable
+sources, implementation-edit requests, and filename conflicts.
+
+### Verification
+
+- Self-validated against `agent-system` `validation.md` (Universal + Action groups): only
+  declared variables, no `---` separators, no emojis/arrows, every step carries a `**Goal:**`,
+  Error Handling uses the `| Scenario | Action |` table.
+- AC003 satisfied (`create-research` supports `single` and `focused-swarm`; `full-swarm` not
+  selectable). AC007 (both actions reference `grill-me`) is partially met — `create-research`
+  references it; pending `synthesise-research` in Phase 3.
+
+### Learnings and things to improve
+
+- `grill-me` is a vendored skill with no registered variable in `.agents/AGENTS.md` and no
+  Skill Catalog row. It is therefore referenced by name (the `grill-me` skill), not by a
+  `$VAR` (which would be undeclared) or a bare path. Worth deciding later whether `grill-me`
+  should be registered for consistency.

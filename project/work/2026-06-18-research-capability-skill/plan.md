@@ -51,7 +51,7 @@ Author every file below via the `agent-system` `author` action against its gover
 
 Author via the `agent-system` `author` action against `action.md` + the `action` template.
 
-- [ ] Create `.agents/skills/research/actions/create-research.md`: location resolution
+- [x] Create `.agents/skills/research/actions/create-research.md`: location resolution
       (explicit-intent-first + context fallback), modes (`single` default, `focused-swarm` with
       user-described lenses; `full-swarm` not exposed), evidence sources (code/docs/web), template
       fill, read-only stop boundary, and `grill-me` reference for ambiguity.
