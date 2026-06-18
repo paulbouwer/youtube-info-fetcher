@@ -75,10 +75,10 @@ Author via the `agent-system` `author` action against `action.md` + the `action`
 
 ### Phase 5 — Validate
 
-- [ ] Run the `agent-system` review action against the bundled checklist; resolve findings. (REQ019)
-- [ ] Dry-run both location modes (standalone, work-package) and both research modes
+- [x] Run the `agent-system` review action against the bundled checklist; resolve findings. (REQ019)
+- [x] Dry-run both location modes (standalone, work-package) and both research modes
       (`single`, `focused-swarm`). (REQ020)
-- [ ] Author `verification-results.md` mapping each issue AC to Pass/Fail with evidence.
+- [x] Author `verification-results.md` mapping each issue AC to Pass/Fail with evidence.
 
 ## Verification
 

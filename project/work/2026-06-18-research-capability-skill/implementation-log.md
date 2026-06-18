@@ -152,3 +152,41 @@ Date: 2026-06-18
   both the Variables block and the registry, so a reader can scan either in the same order.
 - The pre-existing `Grill Me` Catalog row uses padded-cell alignment that differs from the
   other rows; left as-is to avoid unrelated churn, but the table style is mixed.
+
+## Phase 5 — Validate
+
+### What was done
+
+- Ran the `agent-system` `review` action against the bundled `validation.md` checklist over all
+  nine `.agents/skills/research/` assets plus the two modified `AGENTS.md` registries. Universal,
+  skill-manifest, action, rule, rules-index, cross-cutting, and registry-consistency checks all
+  pass with no Critical or Compliance findings. (REQ019)
+- Dry-ran both location modes (standalone, work-package) and both research modes (`single`,
+  `focused-swarm`) as tabletop traces through `create-research.md`, plus a `synthesise-research.md`
+  walkthrough. Confirmed identical dossier content across locations (only the Step 1 path differs),
+  one consolidated dossier with a deduplicated `[F##]` index for `focused-swarm`, and `full-swarm`
+  declined as non-selectable. (REQ020)
+- Authored `verification-results.md`: review summary, dry-run tables, and an AC001–AC008
+  Pass/Fail mapping with evidence.
+
+### Verification
+
+- `verification-results.md` records all eight acceptance criteria as Pass with citations to the
+  authored assets and dry-run traces.
+- Mechanical checks confirm: no `### Bundled Rules` eager-load in `SKILL.md`; `rules.index.md`
+  has a `## Non-Overridable Rules` section naming `citations.md` and the read-only boundary; no
+  H4+ headings, emojis, arrows, or stray `---`; every `$VARIABLE` resolves.
+- Issue #6 ACs AC001, AC002, AC005, AC008 ticked; all eight now checked.
+
+### Learnings and things to improve
+
+- For a behavioural skill (no runnable code), "dry-run" means a tabletop trace of the action's
+  decision points; pairing each trace with the rule/section it exercises makes the evidence in
+  `verification-results.md` auditable rather than asserted.
+- Output-doc templates (`research-dossier.md`, `summary-position.md`) are not agent-system asset
+  types, so they are validated only via the cross-cutting rule↔template agreement check, not the
+  per-asset checklist — worth stating explicitly so a future reviewer does not flag the missing
+  `## Variables` block as a defect.
+- Enumerating the `summary-position` sections inside `synthesise-research.md` Step 4 (done in
+  Phase 3) paid off here: the cross-cutting traceability check had a concrete list to verify
+  against instead of inferring sections from the template alone.
